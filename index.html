@@ -1,60 +1,87 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
 <html>
-    <head>
-        <title>Mans datorikas portfolio</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-         
-                
-            
-     
-            
-            body{
-                background-color:light-green;
-                
-                
-                
-            }; 
-            h2{
-                background-color: light-yellow};
-                
-            
-            
-            
-            
-            
-            
-        </style>
-    </head>
-    <body>
-        <div>
-            <h1>Ko es iemacījos datorikas stundās</h1>
-            <h2><ul>
-                <li>Veidot Rakstorgrafiku</li>
-                <img id="gif" src="img/Ergonomika5.gif" alt="alt"/>
-                <li>Veidot Vektorgrafiku</li>
-             
-                <img src="img/KUK.svg" alt="alt"/>
-                <li>3D modeles printēšana un Video filmēšana</li>
-                <iframe src="https://eduriga-my.sharepoint.com/personal/ajeleckis2_edu_riga_lv/_layouts/15/embed.aspx?UniqueId=5023b421-c891-4c30-9dea-5c7b787c6688&embed=%7B%22hvm%22%3Atrue%2C%22ust%22%3Atrue%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen title="Videoklips bez nosaukuma — izveidots ar Clipchamp (1) (1) 1.mp4"></iframe>
-                 <img src="img/3Ddizains.png" alt="alt"/>
-                <li>Lietot Word un Excel</li>
-                <a href="documents/turisms.docx">Word</a>
-                <a href="documents/Darbs_ar_MsExcel3.xlsx">Excel</a>
-                </ul></h2>
+<head>
+<meta charset="UTF-8">
+<title>Ko es iemācījos datorikas stundās</title>
+<link rel="stylesheet" href="CSS/mansStils.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+<!-- Three.js STL Viewer -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.153.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.153.0/examples/js/loaders/STLLoader.js"></script>
+</head>
+<body>
 
-        
-        
-        
-        
-        
-        </div>
-        
-    </body>
+<!-- Navigācijas panelis -->
+<div class="w3-bar w3-dark-grey">
+  <a href="index.html" class="w3-bar-item w3-button">Sākums</a>
+  <a href="otrais.html" class="w3-bar-item w3-button">Mana tēma</a>
+  <a href="#teksts" class="w3-bar-item w3-button">Tekstapstrāde</a>
+  <a href="#atteli" class="w3-bar-item w3-button">Attēli</a>
+  <a href="#video" class="w3-bar-item w3-button">Video</a>
+  <a href="#excel" class="w3-bar-item w3-button">Excel</a>
+</div>
+
+<h1>Ko es iemācījos datorikas stundās</h1>
+
+<h2 id="teksts">Tekstapstrāde</h2>
+<p>Es iemācījos formatēt dokumentus un izmantot dažādus rīkus.</p>
+<img src="Images/teksts.png" width="400">
+
+<h2 id="atteli">Attēlu apstrāde</h2>
+<h3>GIF animācija</h3>
+<img src="Images/animacija.gif" width="300">
+
+<h3>Logo (vektorgrafika)</h3>
+<img src="Images/logo.png" width="300">
+
+<h2>3D modelēšana</h2>
+<p>Šeit ir mans 3D kubs:</p>
+<div id="stl-container" style="width:400px; height:400px;"></div>
+
+<script>
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xeeeeee);
+const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+camera.position.set(3,3,3);
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(400,400);
+document.getElementById("stl-container").appendChild(renderer.domElement);
+
+const light = new THREE.DirectionalLight(0xffffff, 1);
+light.position.set(5,10,7.5);
+scene.add(light);
+
+const loader = new THREE.STLLoader();
+loader.load('Models/kubs.stl', function(geometry){
+    const material = new THREE.MeshPhongMaterial({color:0xff0000});
+    const mesh = new THREE.Mesh(geometry, material);
+    mesh.rotation.x = -Math.PI/2;
+    scene.add(mesh);
+});
+
+function animate(){
+    requestAnimationFrame(animate);
+    renderer.render(scene,camera);
+}
+animate();
+</script>
+
+<h2 id="video">Video</h2>
+<video controls width="400">
+  <source src="video.mp4" type="video/mp4">
+</video>
+
+<h2 id="excel">Izklājlapa / Aprēķini</h2>
+<img src="Images/aprekinis.png" width="400">
+
+<h2>Plakāts</h2>
+<img src="Images/plakats.svg" width="400">
+
+<h2>Citas lapas</h2>
+<a href="forma.html">Forma</a><br>
+<a href="dzer.html">Dzēriens</a><br>
+<a href="dzerdaudz.html">Daudz dzērieni</a>
+
+</body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Forma</title>
+</head>
+<body>
+<h1>Kalkulators</h1>
+
+<input type="number" id="a" placeholder="Skaitlis 1">
+<input type="number" id="b" placeholder="Skaitlis 2">
+
+<button onclick="summa()">+</button>
+<button onclick="minus()">-</button>
+<button onclick="dalit()">/</button>
+<button onclick="reset()">Reset</button>
+
+<p id="rez"></p>
+
+<script>
+function summa(){ document.getElementById("rez").innerHTML = +a.value + +b.value; }
+function minus(){ document.getElementById("rez").innerHTML = a.value - b.value; }
+function dalit(){ document.getElementById("rez").innerHTML = a.value / b.value; }
+function reset(){ a.value=""; b.value=""; document.getElementById("rez").innerHTML=""; }
+</script>
+
+</body>
+</html>
